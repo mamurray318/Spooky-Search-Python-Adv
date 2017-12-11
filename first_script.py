@@ -3,6 +3,8 @@
 #Comment: build your own defintions
 import time
 
+keys =[]
+
 
 
 def living_room():
@@ -20,8 +22,14 @@ def living_room():
 
 def front_door():
     print("the door is locked from the outside")
-
-    if wardrobe_count >= 2:
+    #key_index is initialized
+    key_index = -1
+    #try and except are commands to find if the keys are in the list
+    try:
+        key_index = keys.index("Spoo-Key")
+    except:
+        key_index = -1
+    if key_index > -1:
         choice = int(input("1 to try open the door using force\n2 to use the spoo-key\n> "))
         if choice == 1:
             print("you could not open the door because it is locked")
@@ -42,17 +50,17 @@ def front_door():
             front_door()
 
 
-
-
 def kitchen():
     print("you are in the kitchen")
-    choice = int(input("1 to enter living room\n2 to enter bathroom\n3 to look at calender\n> "))
+    choice = int(input("1 to enter living room\n2 to enter bathroom\n3 to look in the cookie jar\n> "))
     if choice == 1:
         living_room()
     elif choice == 2:
         bathroom()
     elif choice == 3:
-        print("you look at the calender...it is november 17th")
+        print("you found the coo-key!")
+        keys.append("Coo-Key")
+        print(keys)
         kitchen()
     else:
         print("try again")
@@ -60,13 +68,18 @@ def kitchen():
 
 def bathroom():
     print("you are in the bathroom")
-    choice = int(input("1 to enter hallway\n2 to enter kitchen\n3 to look in mirror\n> "))
+    choice = int(input("1 to enter hallway\n2 to enter kitchen\n3 to look in mirror\n4 to look in toilet> "))
     if choice == 1:
         hallway()
     elif choice == 2:
         kitchen()
     elif choice == 3:
         mirror()
+    elif choice == 4:
+        print("you found the stin-key!")
+        keys.append("Stin-Key")
+        print(keys)
+        bathroom()
     else :
         print("try again")
         bathroom()
@@ -85,6 +98,10 @@ def mirror():
     elif mirror_count == 5:
         print("you think about how looking at yourself for this long is really freaking you out...you should probably stop")
     elif mirror_count == 6:
+        print("you found the mimic-key!")
+        keys.append("Mimic-Key")
+        print(keys)
+    elif mirror_count == 7:
         print("this is your fault not mine")
         death_death()
     choice = int(input("1 to keep looking in mirror\n2 to stop looking in mirror\n> "))
@@ -98,7 +115,9 @@ def mirror():
         mirror()
 
 def bedroom():
-    print("you are in the bedroom")
+    print("you are in the bedroom\nyou realize you have something in your hand...it is the frea-key!")
+    keys.append("Frea-Key")
+    print(keys)
     choice = int(input("1 to enter hallway\n2 to enter bathroom\n3 to look at window\n> "))
     if choice == 1:
         hallway()
@@ -127,7 +146,9 @@ def window():
     print("you look at the window")
     choice = int(input("1 to keep looking at window\n2 to stop looking at window\n> "))
     if choice == 1:
-        print("it is a window")
+        print("the ground looks really far away...you found the high-key!")
+        keys.append("High-Key")
+        print(keys)
         window()
     elif choice == 2:
         print("you stopped looking at the window")
@@ -161,6 +182,8 @@ def wardrobe():
         attic()
     elif wardrobe_count == 2:
         print("congrats! you found the spoo-key")
+        keys.append("Spoo-Key")
+        print(keys)
         attic()
     elif wardrobe_count == 3:
         print("you found narnia")
